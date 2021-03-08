@@ -33,8 +33,11 @@
 <meta property="og:image" content="http://example.com/images/%E9%A9%B1%E5%8A%A8%E5%8F%8A%E7%83%A7%E5%BD%95%E8%BD%AF%E4%BB%B6.png">
 <meta property="og:image" content="http://example.com/images/%E5%88%9B%E5%BB%BA%E4%B8%A4%E4%B8%AAlabel.gif">
 <meta property="og:image" content="http://example.com/images/%E6%9B%B4%E6%94%B9Label%200,1%E5%B1%9E%E6%80%A7.gif">
+<meta property="og:image" content="http://example.com/images/1.gif">
+<meta property="og:image" content="http://example.com/images/%E9%80%89%E5%8C%BA_001.png">
+<meta property="og:image" content="http://example.com/images/2.gif">
 <meta property="article:published_time" content="2021-03-07T06:45:24.000Z">
-<meta property="article:modified_time" content="2021-03-08T01:55:23.897Z">
+<meta property="article:modified_time" content="2021-03-08T02:48:07.636Z">
 <meta property="article:author" content="darknesscandy">
 <meta property="article:tag" content="硬件">
 <meta name="twitter:card" content="summary">
@@ -242,7 +245,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-08 09:55:23" itemprop="dateModified" datetime="2021-03-08T09:55:23+08:00">2021-03-08</time>
+        <time title="修改时间：2021-03-08 10:48:07" itemprop="dateModified" datetime="2021-03-08T10:48:07+08:00">2021-03-08</time>
       </span>
 
   
@@ -270,8 +273,10 @@
 <h3 id="三、环境搭建"><a href="#三、环境搭建" class="headerlink" title="三、环境搭建"></a>三、环境搭建</h3><p>首先需要下载M5Burner烧录软件和CP2104 Driver驱动（即图中软件栏第二和第三个），地址<a target="_blank" rel="noopener" href="https://m5stack-store.myshopify.com/pages/download">https://m5stack-store.myshopify.com/pages/download</a>，根据系统不同选择对应版本。</p>
 <p><img src="/images/%E9%A9%B1%E5%8A%A8%E5%8F%8A%E7%83%A7%E5%BD%95%E8%BD%AF%E4%BB%B6.png" alt="驱动及烧录软件"></p>
 <p>再根据<a target="_blank" rel="noopener" href="https://docs.m5stack.com/#/zh_CN/quick_start/m5core/m5stack_core_get_started_MicroPython">https://docs.m5stack.com/#/zh_CN/quick_start/m5core/m5stack_core_get_started_MicroPython</a>所给出的教程，依次安装驱动、烧录UIFlow、AP热点配置WIFI。进入UIFlow <a target="_blank" rel="noopener" href="https://flow.m5stack.com/">https://flow.m5stack.com/</a>，填写好你的Api key，Languang选择中文，OK即可。</p>
-<h3 id="四、功能实现"><a href="#四、功能实现" class="headerlink" title="四、功能实现"></a>四、功能实现</h3><p>首先来实现小时和分钟的显示，这里我们需要用到label显示所需内容，拖拽两个label进Core里，<img src="/images/%E5%88%9B%E5%BB%BA%E4%B8%A4%E4%B8%AAlabel.gif" alt="创建两个label"></p>
-<p>设置Label0横坐标：52、纵坐标：0、文本：HH、字体：DejaVuSans 72，Label1横坐标：168、纵坐标：0、文本：MM、字体：DejaVuSans 72，<img src="/images/%E6%9B%B4%E6%94%B9Label%200,1%E5%B1%9E%E6%80%A7.gif" alt="更改Label 0,1属性"></p>
+<h3 id="四、功能实现"><a href="#四、功能实现" class="headerlink" title="四、功能实现"></a>四、功能实现</h3><p>首先来实现小时和分钟的显示，这里我们需要用到label显示所需内容，label0显示小时，label1显示分钟，拖拽两个label进Core里。<img src="/images/%E5%88%9B%E5%BB%BA%E4%B8%A4%E4%B8%AAlabel.gif" alt="创建两个label"></p>
+<p>设置Label0横坐标：52、纵坐标：0、文本：HH、字体：DejaVuSans 72，Label1横坐标：168、纵坐标：0、文本：MM、字体：DejaVuSans 72。<img src="/images/%E6%9B%B4%E6%94%B9Label%200,1%E5%B1%9E%E6%80%A7.gif" alt="更改Label 0,1属性"></p>
+<p>接下来补充逻辑，最开始，让Core先连上网络，在高级&gt;Network里选择连接到Wi-Fi账号，输入你的WIFI名称及密码，然后选择时间&gt;等待3ms让系统等待3ms完成连接，接下来就可以连接NTP了，选择高级&gt;NTP&gt;Init ntptime with host…….，继续让系统等待3ms。<img src="/images/1.gif" alt="1"></p>
+<p>现在就可以让Label0显示小时了，选择UI组件&gt;标签&gt;设置label0显示，再将高级&gt;NTP&gt;Get hour拖入其中，Label1如法泡制，将Get hour更换为Get minute。对了，在此之前先清理一下屏幕，绘图&gt;清理屏幕。点击右上角<img src="/images/%E9%80%89%E5%8C%BA_001.png" alt="选区_001">即可在你的Core里看到运行结果。<img src="/images/2.gif" alt="2"></p>
 
     </div>
 

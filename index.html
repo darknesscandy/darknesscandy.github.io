@@ -231,7 +231,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-08 10:48:07" itemprop="dateModified" datetime="2021-03-08T10:48:07+08:00">2021-03-08</time>
+        <time title="修改时间：2021-03-08 16:56:22" itemprop="dateModified" datetime="2021-03-08T16:56:22+08:00">2021-03-08</time>
       </span>
 
   
@@ -251,6 +251,7 @@
 <li>基本的时钟，日历功能。</li>
 <li>由于M5STACK可拓展性，根据需要可以增添温湿度显示等功能。</li>
 </ul>
+<h4 id="3-最终效果"><a href="#3-最终效果" class="headerlink" title="3. 最终效果"></a>3. 最终效果</h4><p><img src="/images/DSC_0067.JPG" alt="DSC_0067"></p>
 <h3 id="二、所需材料"><a href="#二、所需材料" class="headerlink" title="二、所需材料"></a>二、所需材料</h3><ul>
 <li>M5STACK Core 一块</li>
 <li>Type C 数据线一根</li>
@@ -259,10 +260,17 @@
 <h3 id="三、环境搭建"><a href="#三、环境搭建" class="headerlink" title="三、环境搭建"></a>三、环境搭建</h3><p>首先需要下载M5Burner烧录软件和CP2104 Driver驱动（即图中软件栏第二和第三个），地址<a target="_blank" rel="noopener" href="https://m5stack-store.myshopify.com/pages/download">https://m5stack-store.myshopify.com/pages/download</a>，根据系统不同选择对应版本。</p>
 <p><img src="/images/%E9%A9%B1%E5%8A%A8%E5%8F%8A%E7%83%A7%E5%BD%95%E8%BD%AF%E4%BB%B6.png" alt="驱动及烧录软件"></p>
 <p>再根据<a target="_blank" rel="noopener" href="https://docs.m5stack.com/#/zh_CN/quick_start/m5core/m5stack_core_get_started_MicroPython">https://docs.m5stack.com/#/zh_CN/quick_start/m5core/m5stack_core_get_started_MicroPython</a>所给出的教程，依次安装驱动、烧录UIFlow、AP热点配置WIFI。进入UIFlow <a target="_blank" rel="noopener" href="https://flow.m5stack.com/">https://flow.m5stack.com/</a>，填写好你的Api key，Languang选择中文，OK即可。</p>
-<h3 id="四、功能实现"><a href="#四、功能实现" class="headerlink" title="四、功能实现"></a>四、功能实现</h3><p>首先来实现小时和分钟的显示，这里我们需要用到label显示所需内容，label0显示小时，label1显示分钟，拖拽两个label进Core里。<img src="/images/%E5%88%9B%E5%BB%BA%E4%B8%A4%E4%B8%AAlabel.gif" alt="创建两个label"></p>
-<p>设置Label0横坐标：52、纵坐标：0、文本：HH、字体：DejaVuSans 72，Label1横坐标：168、纵坐标：0、文本：MM、字体：DejaVuSans 72。<img src="/images/%E6%9B%B4%E6%94%B9Label%200,1%E5%B1%9E%E6%80%A7.gif" alt="更改Label 0,1属性"></p>
-<p>接下来补充逻辑，最开始，让Core先连上网络，在高级&gt;Network里选择连接到Wi-Fi账号，输入你的WIFI名称及密码，然后选择时间&gt;等待3ms让系统等待3ms完成连接，接下来就可以连接NTP了，选择高级&gt;NTP&gt;Init ntptime with host…….，继续让系统等待3ms。<img src="/images/1.gif" alt="1"></p>
-<p>现在就可以让Label0显示小时了，选择UI组件&gt;标签&gt;设置label0显示，再将高级&gt;NTP&gt;Get hour拖入其中，Label1如法泡制，将Get hour更换为Get minute。对了，在此之前先清理一下屏幕，绘图&gt;清理屏幕。点击右上角<img src="/images/%E9%80%89%E5%8C%BA_001.png" alt="选区_001">即可在你的Core里看到运行结果。<img src="/images/2.gif" alt="2"></p>
+<h3 id="四、功能实现"><a href="#四、功能实现" class="headerlink" title="四、功能实现"></a>四、功能实现</h3><p>在虚拟界面绘制UI，添加label0～7，line0～9，这里贴出我经过调整的数据供参考。<img src="/images/%E5%8F%82%E6%95%B0.gif" alt="参数"></p>
+<p>利用ntp时间服务器获取时间信息</p>
+<p><img src="/images/%E9%80%89%E5%8C%BA_002.png" alt="选区_002"></p>
+<p>利用label显示所获信息，为了避免出现莫名其妙的错误，我把get hour等都转换成了字符串，为了美观，没有十位的补0，小时后添加“：”，由于所剩面积不多，年份取最后两位显示，并在年月后添加“/”。</p>
+<p><img src="/images/%E9%80%89%E5%8C%BA_003.png" alt="选区_003"></p>
+<p>在星期的显示上，通过判断得到的信息，在label上显示中文星期，并在六日时将星期和日替换为红色，而后添加用于显示电池剩余量的语句（这个语句偶尔会有bug可以酌情删掉）。</p>
+<p><img src="/images/%E9%80%89%E5%8C%BA_004.png" alt="选区_004"></p>
+<p>最后绘制线条，将line加粗，目前我仅能以这种苯办法来画粗的线条，在虚拟界面里绘制线条没有粗细选项，只能通过画多根线条来达到加粗的目的。嫌麻烦的话也可以不用添加线条，这只是将界面分开并美化一下，并不影响实际使用。Core的屏幕分辨率为320*240，有强迫症的可以计算后画个完全对称的图形，我这里仅画个大概。</p>
+<p><img src="/images/%E9%80%89%E5%8C%BA_005.png" alt="选区_005"></p>
+<p>最后的最后，可以添加一个自动亮度，通过判断当前时间，晚上降低屏幕亮度，白天提高屏幕亮度，或者手动增减亮度，这里给出我的逻辑，在实际使用中发现半夜屏幕自己会恢复亮度，想了半天也不知道哪里的问题，所幸能看个时间也就够了，再深入的就没研究了。对了，这个时钟半夜4点会准时停止更新，一动不动直接卡死，也不知道什么问题，早上起来重启一下就恢复了，无所谓了，我就看个点儿╮(╯▽╰)╭ ，以上。<br><img src="/images/%E9%80%89%E5%8C%BA_006.png" alt="选区_006"></p>
+<p>（中间灰色的块，SCR、SCRL的赋值以及屏幕亮度的设定都是在大循环外的，A加亮度，B减亮度，C自动亮度，A+B立即变黑）</p>
 
       
     </div>

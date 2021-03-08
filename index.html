@@ -223,10 +223,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-03-07 14:45:24 / 修改时间：18:14:29" itemprop="dateCreated datePublished" datetime="2021-03-07T14:45:24+08:00">2021-03-07</time>
+      <time title="创建时间：2021-03-07 14:45:24" itemprop="dateCreated datePublished" datetime="2021-03-07T14:45:24+08:00">2021-03-07</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-08 09:55:23" itemprop="dateModified" datetime="2021-03-08T09:55:23+08:00">2021-03-08</time>
+      </span>
 
   
 </div>
@@ -243,16 +249,19 @@
 </ul>
 <h4 id="2-实现功能"><a href="#2-实现功能" class="headerlink" title="2. 实现功能"></a>2. 实现功能</h4><ul>
 <li>基本的时钟，日历功能。</li>
-<li>由于M5STACK可拓展性，可以增添温湿度显示等功能。</li>
+<li>由于M5STACK可拓展性，根据需要可以增添温湿度显示等功能。</li>
 </ul>
 <h3 id="二、所需材料"><a href="#二、所需材料" class="headerlink" title="二、所需材料"></a>二、所需材料</h3><ul>
 <li>M5STACK Core 一块</li>
 <li>Type C 数据线一根</li>
 <li>电脑一台</li>
 </ul>
-<h3 id="三、环境搭建"><a href="#三、环境搭建" class="headerlink" title="三、环境搭建"></a>三、环境搭建</h3><p>首先需要下载M5Burner烧录软件和CP2104 Driver驱动（即图中软件栏第二和第三个），地址<a target="_blank" rel="noopener" href="https://m5stack-store.myshopify.com/pages/download">https://m5stack-store.myshopify.com/pages/download</a>，根据系统不同选择对应版本，这里win10为例。</p>
+<h3 id="三、环境搭建"><a href="#三、环境搭建" class="headerlink" title="三、环境搭建"></a>三、环境搭建</h3><p>首先需要下载M5Burner烧录软件和CP2104 Driver驱动（即图中软件栏第二和第三个），地址<a target="_blank" rel="noopener" href="https://m5stack-store.myshopify.com/pages/download">https://m5stack-store.myshopify.com/pages/download</a>，根据系统不同选择对应版本。</p>
 <p><img src="/images/%E9%A9%B1%E5%8A%A8%E5%8F%8A%E7%83%A7%E5%BD%95%E8%BD%AF%E4%BB%B6.png" alt="驱动及烧录软件"></p>
-<h3 id="四、功能实现"><a href="#四、功能实现" class="headerlink" title="四、功能实现"></a>四、功能实现</h3>
+<p>再根据<a target="_blank" rel="noopener" href="https://docs.m5stack.com/#/zh_CN/quick_start/m5core/m5stack_core_get_started_MicroPython">https://docs.m5stack.com/#/zh_CN/quick_start/m5core/m5stack_core_get_started_MicroPython</a>所给出的教程，依次安装驱动、烧录UIFlow、AP热点配置WIFI。进入UIFlow <a target="_blank" rel="noopener" href="https://flow.m5stack.com/">https://flow.m5stack.com/</a>，填写好你的Api key，Languang选择中文，OK即可。</p>
+<h3 id="四、功能实现"><a href="#四、功能实现" class="headerlink" title="四、功能实现"></a>四、功能实现</h3><p>首先来实现小时和分钟的显示，这里我们需要用到label显示所需内容，拖拽两个label进Core里，<img src="/images/%E5%88%9B%E5%BB%BA%E4%B8%A4%E4%B8%AAlabel.gif" alt="创建两个label"></p>
+<p>设置Label0横坐标：52、纵坐标：0、文本：HH、字体：DejaVuSans 72，Label1横坐标：168、纵坐标：0、文本：MM、字体：DejaVuSans 72，<img src="/images/%E6%9B%B4%E6%94%B9Label%200,1%E5%B1%9E%E6%80%A7.gif" alt="更改Label 0,1属性"></p>
+
       
     </div>
 

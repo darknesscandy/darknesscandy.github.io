@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,6 +206,95 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/07/%E5%9F%BA%E4%BA%8EM5STACK-Stick-C%E7%9A%84%E6%B8%A9%E6%B9%BF%E5%BA%A6%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="darknesscandy">
+      <meta itemprop="description" content="简梦工作室官方博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简梦工作室">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/07/%E5%9F%BA%E4%BA%8EM5STACK-Stick-C%E7%9A%84%E6%B8%A9%E6%B9%BF%E5%BA%A6%E8%A1%A8/" class="post-title-link" itemprop="url">基于M5STACK Stick C的温湿度表</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-04-07 18:55:56 / 修改时间：19:57:10" itemprop="dateCreated datePublished" datetime="2021-04-07T18:55:56+08:00">2021-04-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="手头Stick-C一直闲置，配合ENV-II正好可以用来做一个简易的温湿度仪。时间有限，暂未做更多内容以及界面，一切以简洁为准。"><a href="#手头Stick-C一直闲置，配合ENV-II正好可以用来做一个简易的温湿度仪。时间有限，暂未做更多内容以及界面，一切以简洁为准。" class="headerlink" title="手头Stick C一直闲置，配合ENV.II正好可以用来做一个简易的温湿度仪。时间有限，暂未做更多内容以及界面，一切以简洁为准。"></a>手头Stick C一直闲置，配合ENV.II正好可以用来做一个简易的温湿度仪。时间有限，暂未做更多内容以及界面，一切以简洁为准。</h4><h3 id="一、项目功能"><a href="#一、项目功能" class="headerlink" title="一、项目功能"></a>一、项目功能</h3><h4 id="1-所用技术"><a href="#1-所用技术" class="headerlink" title="1.所用技术"></a>1.所用技术</h4><ul>
+<li>本项目在电脑端UIflow中完成，没有太多东西，理清基本逻辑即可。</li>
+</ul>
+<h4 id="2-实现功能"><a href="#2-实现功能" class="headerlink" title="2.实现功能"></a>2.实现功能</h4><ul>
+<li>基本的温度、湿度、气压显示</li>
+<li>根据当前温度、湿度改变文字颜色，可以更便捷了解当前环境情况</li>
+<li>通过按键开关屏幕，增加续航</li>
+</ul>
+<h4 id="3-最终效果"><a href="#3-最终效果" class="headerlink" title="3.最终效果"></a>3.最终效果</h4><p><img src="/images/DSC_0154.JPG" alt="DSC_0154"></p>
+<h3 id="二、所需材料"><a href="#二、所需材料" class="headerlink" title="二、所需材料"></a>二、所需材料</h3><ul>
+<li>Stick C 一个</li>
+<li>Type C 数据线一根</li>
+<li>电脑一台</li>
+</ul>
+<h3 id="三、环境搭建"><a href="#三、环境搭建" class="headerlink" title="三、环境搭建"></a>三、环境搭建</h3><p>具体可参考上一篇博文。<a target="_blank" rel="noopener" href="http://simpledream.xyz/2021/03/07/%E5%9F%BA%E4%BA%8EM5STACK%E7%9A%84%E7%BD%91%E7%BB%9C%E6%97%B6%E9%92%9F/">基于M5STACK的网络时钟</a></p>
+<h3 id="四、功能实现"><a href="#四、功能实现" class="headerlink" title="四、功能实现"></a>四、功能实现</h3><p>在虚拟界面中绘制三个label，为了能使气压显示完全，均以45度放置，将字体改为Unicode 16。具体参数如下（仅供参考）。</p>
+<p>![Peek 2021-04-07 19-29](/images/Peek 2021-04-07 19-29.gif)</p>
+<p>分别为气压、温度、湿度建立变量并为其赋值以便后续调用，该操作需在循环内进行。</p>
+<p><img src="/images/%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC.png" alt="变量赋值"></p>
+<p>再分别为三个label赋值，让其显示数据。为了方便读取数值，这里数据全部取整，同时在数据后加入相应单位（<a target="_blank" rel="noopener" href="https://docs.m5stack.com/#/zh_CN/uiflow/ui_simulator?id=unicode">可以插入官网提供的符号</a>）。</p>
+<p><img src="/images/%E7%AC%A6%E5%8F%B71-1617795705491.png" alt="符号1"></p>
+<p><img src="/images/%E7%AC%A6%E5%8F%B72.png" alt="符号1"></p>
+<p><img src="/images/%E6%B8%A9%E6%B9%BF%E5%BA%A6%E8%B5%8B%E5%80%BC.png" alt="温湿度赋值"><br>最后再进行一些简单润色，给温度及湿度划定范围，让显示的数据在不同范围内呈现不同的颜色，以便更好的了解当下的环境情况（具体参数仅供参考）。<br><img src="/images/%E6%B6%A6%E8%89%B2.png" alt="润色"></p>
+<p>再添加一个按键事件，通过按动按钮实现屏幕的开关（调整亮度），从而尽可能的降低功耗。<br><img src="/images/%E9%99%8D%E4%BD%8E%E5%8A%9F%E8%80%97.png" alt="降低功耗"></p>
+<p>这样，一个简易的温湿度仪便大功告成，日后有时间计划再添加一些新功能，例如气压走势图等，目前它以满足我的要求，以上。:-)</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/07/%E5%9F%BA%E4%BA%8EM5STACK%E7%9A%84%E7%BD%91%E7%BB%9C%E6%97%B6%E9%92%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -237,7 +326,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-08 16:56:22" itemprop="dateModified" datetime="2021-03-08T16:56:22+08:00">2021-03-08</time>
+        <time title="修改时间：2021-04-07 19:24:28" itemprop="dateModified" datetime="2021-04-07T19:24:28+08:00">2021-04-07</time>
       </span>
 
   
@@ -275,7 +364,7 @@
 <p><img src="/images/%E9%80%89%E5%8C%BA_004.png" alt="选区_004"></p>
 <p>最后绘制线条，将line加粗，目前我仅能以这种苯办法来画粗的线条，在虚拟界面里绘制线条没有粗细选项，只能通过画多根线条来达到加粗的目的。嫌麻烦的话也可以不用添加线条，这只是将界面分开并美化一下，并不影响实际使用。Core的屏幕分辨率为320*240，有强迫症的可以计算后画个完全对称的图形，我这里仅画个大概。</p>
 <p><img src="/images/%E9%80%89%E5%8C%BA_005.png" alt="选区_005"></p>
-<p>最后的最后，可以添加一个自动亮度，通过判断当前时间，晚上降低屏幕亮度，白天提高屏幕亮度，或者手动增减亮度，这里给出我的逻辑，在实际使用中发现半夜屏幕自己会恢复亮度，想了半天也不知道哪里的问题，所幸能看个时间也就够了，再深入的就没研究了。对了，这个时钟半夜4点会准时停止更新，一动不动直接卡死，也不知道什么问题，早上起来重启一下就恢复了，无所谓了，我就看个点儿╮(╯▽╰)╭ ，以上。<br><img src="/images/%E9%80%89%E5%8C%BA_006.png" alt="选区_006"></p>
+<p>最后的最后，可以添加一个自动亮度，通过判断当前时间，晚上降低屏幕亮度，白天提高屏幕亮度，或者手动增减亮度，这里给出我的逻辑，在实际使用中发现半夜屏幕自己会恢复亮度，想了半天也不知道哪里的问题，所幸能看个时间也就够了，再深入的就没研究了╮(╯▽╰)╭ ，以上。<br><img src="/images/%E9%80%89%E5%8C%BA_006.png" alt="选区_006"></p>
 <p>（中间灰色的块，SCR、SCRL的赋值以及屏幕亮度的设定都是在大循环外的，A加亮度，B减亮度，C自动亮度，A+B立即变黑）</p>
 
       

@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -197,6 +197,77 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/05/%E5%9F%BA%E4%BA%8EM5STACK%E7%9A%84%E7%BD%91%E7%BB%9C%E6%97%B6%E9%92%9F%E7%9A%84%E5%90%8E%E7%BB%AD%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="darknesscandy">
+      <meta itemprop="description" content="简梦工作室官方博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="简梦工作室">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/09/05/%E5%9F%BA%E4%BA%8EM5STACK%E7%9A%84%E7%BD%91%E7%BB%9C%E6%97%B6%E9%92%9F%E7%9A%84%E5%90%8E%E7%BB%AD%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">基于M5STACK的网络时钟的后续优化</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-09-05 07:49:36 / 修改时间：08:45:50" itemprop="dateCreated datePublished" datetime="2021-09-05T07:49:36+08:00">2021-09-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="由于路由的设置，每天凌晨四点会重启，这就导致每天早晨时钟都会停在四点整，需要手动重启才能再次连入网络，由于懒再加上又不是不能用，便一直没去优化。今晨突发奇想，会不会加个if判断下网络状态就可以了，随即开电脑尝试，便有了这篇文章。"><a href="#由于路由的设置，每天凌晨四点会重启，这就导致每天早晨时钟都会停在四点整，需要手动重启才能再次连入网络，由于懒再加上又不是不能用，便一直没去优化。今晨突发奇想，会不会加个if判断下网络状态就可以了，随即开电脑尝试，便有了这篇文章。" class="headerlink" title="由于路由的设置，每天凌晨四点会重启，这就导致每天早晨时钟都会停在四点整，需要手动重启才能再次连入网络，由于懒再加上又不是不能用，便一直没去优化。今晨突发奇想，会不会加个if判断下网络状态就可以了，随即开电脑尝试，便有了这篇文章。"></a>由于路由的设置，每天凌晨四点会重启，这就导致每天早晨时钟都会停在四点整，需要手动重启才能再次连入网络，由于懒再加上又不是不能用，便一直没去优化。今晨突发奇想，会不会加个if判断下网络状态就可以了，随即开电脑尝试，便有了这篇文章。</h4><h3 id="一、更新功能"><a href="#一、更新功能" class="headerlink" title="一、更新功能"></a>一、更新功能</h3><ul>
+<li>添加断网自动重联功能</li>
+</ul>
+<h3 id="二、实现功能"><a href="#二、实现功能" class="headerlink" title="二、实现功能"></a>二、实现功能</h3><p>只需在主循环下添加一个if语句判断wifi状态即可（一个语句就能解决的事╮(╯▽╰)╭）</p>
+<p><img src="/images/if%E8%AF%AD%E5%8F%A5.png" alt="if语句"></p>
+<p><img src="/images/%E6%8F%92%E5%85%A5%E5%BE%AA%E7%8E%AF.png" alt="插入循环"></p>
+<p>经测试，在断开网络情况下，时间数字会停止走动，并会自动尝试联网，在连接上wifi后，自动更新时间。如此，便告一段落，后续或许会继续优化……</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
